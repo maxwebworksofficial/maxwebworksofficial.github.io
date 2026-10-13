@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10110f" />
+  <meta name="description" content="Aurevia — premium website concept demonstrating a modern custom-domain experience." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <title>Aurevia — Premium Website Concept</title>
+  <style>
+    :root{
+      --ink:#10110f;
+      --paper:#f4f1e8;
+      --lime:#c8ff55;
+      --muted:#67685f;
+      --line:rgba(16,17,15,.14);
+      --white:#fffef9;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+    .nav{
+      position:sticky;top:0;z-index:50;
+      background:rgba(244,241,232,.86);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+    }
+    .navin{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .logo{font-weight:900;font-size:1.15rem;letter-spacing:-.04em;display:flex;align-items:center;gap:10px}
+    .logo-dot{width:13px;height:13px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 5px rgba(200,255,85,.25)}
+    .navlinks{display:flex;gap:28px;align-items:center;font-size:.92rem}
+    .navlinks a{opacity:.72}.navlinks a:hover{opacity:1}
+    .cta-sm{background:var(--ink);color:white;padding:10px 15px;border-radius:999px!important;opacity:1!important}
+    .hero{
+      position:relative;
+      min-height:760px;
+      display:grid;
+      align-items:center;
+      padding:85px 0 100px;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      width:520px;height:520px;border-radius:50%;
+      background:var(--lime);
+      filter:blur(1px);
+      right:-180px;top:60px;
+      opacity:.85;
+      z-index:-1;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+    .kicker{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.18em;margin-bottom:24px}
+    h1{
+      font-size:clamp(4rem,8vw,7.6rem);
+      line-height:.88;
+      letter-spacing:-.075em;
+      margin:0;
+      max-width:850px;
+    }
+    .hero p{max-width:650px;color:var(--muted);font-size:1.1rem;margin:28px 0 0}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+    .btn{
+      padding:14px 20px;border-radius:999px;font-weight:750;font-size:.95rem;
+      border:1px solid var(--ink);display:inline-flex;align-items:center;gap:10px;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-dark{background:var(--ink);color:white}
+    .btn-light{background:transparent}
+    .device{
+      background:var(--ink);
+      border-radius:34px;
+      padding:16px;
+      box-shadow:0 40px 100px rgba(16,17,15,.2);
+      transform:rotate(3deg);
+    }
+    .screen{
+      min-height:500px;border-radius:24px;background:
+      radial-gradient(circle at 75% 15%, rgba(200,255,85,.75), transparent 20%),
+      linear-gradient(180deg,#20221c,#11120f);
+      color:white;padding:30px;display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .screen-top{display:flex;justify-content:space-between;font-size:.75rem;opacity:.7}
+    .screen-big{font-size:3rem;line-height:.95;letter-spacing:-.06em;font-weight:850;max-width:290px}
+    .screen-card{padding:18px;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(255,255,255,.06);backdrop-filter:blur(10px)}
+    .screen-card strong{display:block;font-size:1.1rem;margin-bottom:6px}
+    .screen-card span{font-size:.86rem;color:#c9cbbf}
+
+    .marquee{
+      border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+      padding:18px 0;overflow:hidden;background:var(--white)
+    }
+    .marquee-inner{white-space:nowrap;font-weight:800;letter-spacing:.05em;font-size:.9rem}
+    .marquee-inner span{margin-right:44px}
+
+    section{padding:105px 0}
+    .section-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:end;margin-bottom:50px}
+    .eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;font-weight:800}
+    h2{margin:0;font-size:clamp(2.7rem,5vw,5rem);line-height:.94;letter-spacing:-.065em}
+    .lede{color:var(--muted);max-width:650px;font-size:1.05rem;margin-top:18px}
+
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service{
+      min-height:320px;padding:28px;border:1px solid var(--line);border-radius:26px;
+      display:flex;flex-direction:column;justify-content:space-between;background:rgba(255,255,255,.28);
+      transition:.25s ease;
+    }
+    .service:hover{transform:translateY(-6px);background:var(--white)}
+    .num{font-size:.76rem;font-weight:800;letter-spacing:.14em}
+    .service h3{font-size:1.7rem;letter-spacing:-.04em;margin:0 0 10px}
+    .service p{color:var(--muted);margin:0}
+    .icon{width:52px;height:52px;border-radius:16px;background:var(--lime);display:grid;place-items:center;font-size:1.25rem;font-weight:900}
+
+    .feature{
+      background:var(--ink);color:white;border-radius:38px;padding:54px;
+      display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+      box-shadow:0 35px 100px rgba(16,17,15,.18)
+    }
+    .feature h2{max-width:620px}
+    .feature p{color:#b8baaf;font-size:1.04rem;max-width:570px}
+    .domain{
+      margin-top:30px;border:1px solid rgba(255,255,255,.13);border-radius:22px;padding:20px;
+      background:rgba(255,255,255,.05)
+    }
+    .browserbar{display:flex;gap:7px;margin-bottom:18px}
+    .browserbar i{width:9px;height:9px;border-radius:50%;background:#777;display:block}
+    .urlbar{background:#1c1e19;border:1px solid rgba(255,255,255,.09);padding:14px 16px;border-radius:12px;color:#d7dacd;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    .urlbar b{color:var(--lime)}
+    .points{display:grid;gap:14px}
+    .point{display:flex;gap:13px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.09)}
+    .check{width:24px;height:24px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-size:.75rem;font-weight:900;flex:0 0 auto}
+    .point strong{display:block;margin-bottom:2px}.point span{color:#aeb1a5;font-size:.9rem}
+
+    .work-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}
+    .work-card{min-height:420px;border-radius:28px;overflow:hidden;position:relative;padding:34px;display:flex;flex-direction:column;justify-content:flex-end}
+    .work-one{background:linear-gradient(135deg,#d4ff72,#a9e52d)}
+    .work-two{background:linear-gradient(135deg,#bbb5ff,#7769ff);color:white}
+    .work-card:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-70px;top:-70px;border:1px solid rgba(0,0,0,.18)}
+    .work-card h3{font-size:2rem;letter-spacing:-.05em;margin:0 0 7px;position:relative}.work-card p{margin:0;opacity:.72;position:relative}
+
+    .quote{
+      text-align:center;padding:110px 30px;
+    }
+    .quote blockquote{margin:0 auto;max-width:940px;font-size:clamp(2.3rem,5vw,4.8rem);line-height:1.02;letter-spacing:-.06em;font-weight:850}
+    .quote p{color:var(--muted);margin-top:24px}
+
+    .final{
+      background:var(--lime);border-radius:36px;padding:65px;
+      display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end
+    }
+    .final h2{font-size:clamp(3rem,6vw,6rem)}
+    .final-right{text-align:right}.final-right p{max-width:450px;margin:0 0 24px auto;color:#34362f}
+    .final .btn{background:var(--ink);color:white}
+
+    footer{padding:38px 0 46px}
+    .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:28px;color:var(--muted);font-size:.86rem}
+    .demo-badge{position:fixed;right:18px;bottom:18px;z-index:70;background:var(--ink);color:white;padding:9px 13px;border-radius:999px;font-size:.74rem;box-shadow:0 12px 35px rgba(0,0,0,.2)}
+    .demo-badge b{color:var(--lime)}
+
+    @media(max-width:860px){
+      .navlinks a:not(.cta-sm){display:none}
+      .hero-grid,.section-head,.feature,.final{grid-template-columns:1fr}
+      .services{grid-template-columns:1fr}
+      .work-grid{grid-template-columns:1fr}
+      .hero{padding-top:70px}
+      .device{max-width:520px;margin:auto;transform:none}
+      .final-right{text-align:left}.final-right p{margin-left:0}
+    }
+    @media(max-width:520px){
+      .wrap{width:min(100% - 26px,1180px)}
+      h1{font-size:clamp(3.7rem,17vw,5.5rem)}
+      .feature,.final{padding:30px;border-radius:26px}
+      section{padding:75px 0}
+      .demo-badge{display:none}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap navin">
+      <a class="logo" href="#top"><span class="logo-dot"></span>Aurevia</a>
+      <div class="navlinks">
+        <a href="#services">Services</a>
+        <a href="#domain">Your domain</a>
+        <a href="#work">Concepts</a>
+        <a href="#contact" class="cta-sm">Start a project</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="kicker">Premium website concept</div>
+          <h1>Make your brand <span style="text-decoration:underline;text-decoration-thickness:.08em;text-decoration-color:var(--lime)">look established.</span></h1>
+          <p>A modern website can turn a simple domain into a polished digital identity — fast, credible, mobile-friendly and ready to grow with your business.</p>
+          <div class="actions">
+            <a class="btn btn-dark" href="#domain">See the domain experience →</a>
+            <a class="btn btn-light" href="#services">Explore the design</a>
+          </div>
+        </div>
+        <div class="device">
+          <div class="screen">
+            <div class="screen-top"><span>AUREVIA / 2026</span><span>● LIVE</span></div>
+            <div class="screen-big">A strong first impression starts online.</div>
+            <div class="screen-card">
+              <strong>Your brand. Your domain.</strong>
+              <span>A focused digital home that feels intentional, credible and yours.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee">
+      <div class="marquee-inner">
+        <span>FAST LOADING</span><span>RESPONSIVE</span><span>CUSTOM DOMAIN READY</span><span>HTTPS</span><span>MODERN DESIGN</span><span>SEARCH FRIENDLY</span><span>FAST LOADING</span><span>RESPONSIVE</span>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">What a good site gives you</div>
+          <div>
+            <h2>More than just a page on the internet.</h2>
+            <p class="lede">A clean website gives your brand a permanent home, a professional presence and a place customers can trust.</p>
+          </div>
+        </div>
+
+        <div class="services">
+          <article class="service">
+            <div><span class="num">01 / IDENTITY</span></div>
+            <div>
+              <div class="icon">A</div>
+              <h3>Professional presence</h3>
+              <p>A consistent visual identity makes even a new business feel more established and intentional.</p>
+            </div>
+          </article>
+          <article class="service">
+            <div><span class="num">02 / TRUST</span></div>
+            <div>
+              <div class="icon">✓</div>
+              <h3>Built-in credibility</h3>
+              <p>Your own domain, HTTPS and clear contact information create a much stronger first impression.</p>
+            </div>
+          </article>
+          <article class="service">
+            <div><span class="num">03 / CONTROL</span></div>
+            <div>
+              <div class="icon">↗</div>
+              <h3>A platform you own</h3>
+              <p>Unlike a social profile, your website can evolve into products, bookings, portfolios, support or e-commerce.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="domain">
+      <div class="wrap">
+        <div class="feature">
+          <div>
+            <div class="eyebrow" style="color:var(--lime)">Your custom domain</div>
+            <h2>Imagine this at <span style="color:var(--lime)">yourbrand.com</span></h2>
+            <p>A custom domain is the memorable address. The website is what turns that address into a real brand experience.</p>
+            <div class="domain">
+              <div class="browserbar"><i></i><i></i><i></i></div>
+              <div class="urlbar">https://<b>yourbrand.com</b></div>
+            </div>
+          </div>
+          <div class="points">
+            <div class="point"><span class="check">✓</span><div><strong>Easy to remember</strong><span>A short domain is easier to share in conversations, messages and printed material.</span></div></div>
+            <div class="point"><span class="check">✓</span><div><strong>Professional email later</strong><span>You can add addresses like hello@yourbrand.com when you want them.</span></div></div>
+            <div class="point"><span class="check">✓</span><div><strong>Portable</strong><span>The domain can point to different hosting providers over time without changing your public identity.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Design direction</div>
+          <div>
+            <h2>A site can feel uniquely yours.</h2>
+            <p class="lede">The same domain can support a minimal studio, local business, portfolio, service company or product brand.</p>
+          </div>
+        </div>
+        <div class="work-grid">
+          <article class="work-card work-one">
+            <h3>Bold & modern</h3>
+            <p>High-impact typography, vivid colour and crisp spacing.</p>
+          </article>
+          <article class="work-card work-two">
+            <h3>Premium & calm</h3>
+            <p>Strong hierarchy, restraint and thoughtful details.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote">
+      <div class="wrap">
+        <blockquote>“A domain gives people an address. A great website gives them a reason to remember it.”</blockquote>
+        <p>Concept website — built as a live demonstration.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="final">
+          <div>
+            <div class="eyebrow">Ready when you are</div>
+            <h2>Turn the domain into something worth visiting.</h2>
+          </div>
+          <div class="final-right">
+            <p>This sample is intentionally generic. It can be rebranded around a real business, colours, services and domain in minutes.</p>
+            <a class="btn" href="#top">Back to top ↑</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <span>© 2026 Aurevia — Website concept</span>
+      <span>Demo only · No real business represented</span>
+    </div>
+  </footer>
+
+  <div class="demo-badge">LIVE <b>DEMO</b></div>
+</body>
+</html>
